@@ -18,7 +18,7 @@ public class Participant {
     private String fullName;
     private String email;
     private String gender;
-    private String birthDate;
+    private String birthdate;
     private String club;
     @ManyToMany
     @JoinTable(
