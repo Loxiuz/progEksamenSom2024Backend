@@ -18,6 +18,4 @@ public class Discipline {
     private int id;
     private String name;
     private String resultType;
-    @ManyToMany(mappedBy = "disciplines")
-    private Set<Participant> participants = new HashSet<>();
 }

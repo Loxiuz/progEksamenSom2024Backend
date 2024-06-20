@@ -32,7 +32,7 @@ public class ParticipantController {
         }
 
         @PostMapping
-        public ResponseEntity<Participant> addParticipant(Participant participant) {
+        public ResponseEntity<Participant> addParticipant(@RequestBody Participant participant) {
             return new ResponseEntity<>(participantService.addParticipant(participant), HttpStatus.CREATED);
         }
 

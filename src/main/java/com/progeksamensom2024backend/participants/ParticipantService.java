@@ -35,7 +35,6 @@ public class ParticipantService {
         existingParticipant.setGender(participant.getGender());
         existingParticipant.setBirthdate(participant.getBirthdate());
         existingParticipant.setClub(participant.getClub());
-        existingParticipant.setDisciplines(participant.getDisciplines());
         return participantRepository.save(existingParticipant);
     }
 
