@@ -17,6 +17,9 @@ public class ResultDTO {
     private LocalDate date;
     private String value;
 
+    public ResultDTO() {
+    }
+
     public ResultDTO(Result result) {
         this.id = result.getId();
         this.participantId = result.getParticipant().getId();
