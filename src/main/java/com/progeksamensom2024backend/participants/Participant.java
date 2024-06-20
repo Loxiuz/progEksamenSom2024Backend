@@ -1,11 +1,12 @@
 package com.progeksamensom2024backend.participants;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.progeksamensom2024backend.discipline.Discipline;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +20,10 @@ public class Participant {
     private String gender;
     private String birthDate;
     private String club;
+    @ManyToMany
+    @JoinTable(
+            name = "participant_discipline",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "discipline_id"))
+    private Set<Discipline> disciplines = new HashSet<>();
 }
