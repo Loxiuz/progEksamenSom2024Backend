@@ -53,7 +53,7 @@ class ResultServiceTest {
     void shouldReturnResultWhenResultExists() {
         when(resultRepository.findById(anyInt())).thenReturn(Optional.of(result));
 
-        ResultDTO resultDTO = resultService.getResult(1);
+        ResultDTO resultDTO = resultService.getResultById(1);
 
         assertNotNull(resultDTO);
         verify(resultRepository, times(1)).findById(anyInt());
@@ -63,7 +63,7 @@ class ResultServiceTest {
     void shouldThrowExceptionWhenResultDoesNotExist() {
         when(resultRepository.findById(anyInt())).thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> resultService.getResult(1));
+        assertThrows(IllegalArgumentException.class, () -> resultService.getResultById(1));
         verify(resultRepository, times(1)).findById(anyInt());
     }
 

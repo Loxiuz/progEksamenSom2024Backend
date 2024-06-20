@@ -26,7 +26,7 @@ public class ResultService {
             return resultRepository.findAll().stream().map(ResultDTO::new).toList();
         }
 
-        public ResultDTO getResult(int id) {
+        public ResultDTO getResultById(int id) {
             Result result = resultRepository.findById(id)
                     .orElseThrow(() ->
                             new IllegalArgumentException("Result with id " + id + " not found")
@@ -38,27 +38,6 @@ public class ResultService {
             Result result = new Result();
             updateResult(result, rDTO);
             return new ResultDTO(resultRepository.save(result));
-        }
-
-        public void updateResult(Result original , ResultDTO rDTO) {
-            if(rDTO.getParticipantId() != 0) {
-                Optional<Participant> participant = participantRepository.findById(rDTO.getParticipantId());
-                if(participant.isPresent()) {
-                    original.setParticipant(participant.get());
-                } else {
-                    original.setParticipant(null);
-                }
-            }
-            if(rDTO.getDisciplineId() != 0) {
-                Optional<Discipline> discipline = disciplineRepository.findById(rDTO.getDisciplineId());
-                if(discipline.isPresent()) {
-                    original.setDiscipline(discipline.get());
-                } else {
-                    original.setDiscipline(null);
-                }
-            }
-            original.setValue(rDTO.getValue());
-            original.setDate(rDTO.getDate());
         }
 
         public ResultDTO editResult(int id, ResultDTO rDTO) {
@@ -73,4 +52,25 @@ public class ResultService {
         public void deleteResult(int id) {
             resultRepository.deleteById(id);
         }
+
+    public void updateResult(Result original , ResultDTO rDTO) {
+        if(rDTO.getParticipantId() != 0) {
+            Optional<Participant> participant = participantRepository.findById(rDTO.getParticipantId());
+            if(participant.isPresent()) {
+                original.setParticipant(participant.get());
+            } else {
+                original.setParticipant(null);
+            }
+        }
+        if(rDTO.getDisciplineId() != 0) {
+            Optional<Discipline> discipline = disciplineRepository.findById(rDTO.getDisciplineId());
+            if(discipline.isPresent()) {
+                original.setDiscipline(discipline.get());
+            } else {
+                original.setDiscipline(null);
+            }
+        }
+        original.setValue(rDTO.getValue());
+        original.setDate(rDTO.getDate());
+    }
 }
