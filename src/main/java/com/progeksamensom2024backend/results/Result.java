@@ -19,6 +19,6 @@ public class Result {
     private Participant participant;
     @ManyToOne
     private Discipline discipline;
-    private LocalDate date;
+    private String date;
     private String value;
 }

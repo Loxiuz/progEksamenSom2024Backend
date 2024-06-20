@@ -36,7 +36,7 @@ class ResultControllerTest {
         result1.setId(1);
         result1.setParticipantId(1);
         result1.setDisciplineId(1);
-        result1.setDate(LocalDate.of(2021, 12, 24));
+        result1.setDate("2021-12-24");
         result1.setValue("10.0");
 
         result2 = new ResultDTO();
