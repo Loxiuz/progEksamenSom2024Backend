@@ -71,10 +71,6 @@ public class ResultService {
         }
 
         public void deleteResult(int id) {
-            Result result = resultRepository.findById(id)
-                    .orElseThrow(() ->
-                            new IllegalArgumentException("Result with id " + id + " not found")
-                    );
-            resultRepository.deleteById(result.getId());
+            resultRepository.deleteById(id);
         }
 }

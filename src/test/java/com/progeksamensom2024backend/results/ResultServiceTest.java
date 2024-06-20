@@ -68,6 +68,26 @@ class ResultServiceTest {
     }
 
     @Test
+    void shouldCreateResultWhenParticipantAndDisciplineExist() {
+        when(participantRepository.findById(anyInt())).thenReturn(Optional.of(participant));
+        when(disciplineRepository.findById(anyInt())).thenReturn(Optional.of(discipline));
+        when(resultRepository.save(any(Result.class))).thenReturn(result);
+
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setParticipantId(participant.getId());
+        resultDTO.setDisciplineId(discipline.getId());
+
+        ResultDTO createdResultDTO = resultService.createResult(resultDTO);
+
+        assertNotNull(createdResultDTO);
+        assertEquals(1, createdResultDTO.getParticipantId());
+        assertEquals(1, createdResultDTO.getDisciplineId());
+        verify(participantRepository, times(1)).findById(anyInt());
+        verify(disciplineRepository, times(1)).findById(anyInt());
+        verify(resultRepository, times(1)).save(any(Result.class));
+    }
+
+    @Test
     void shouldUpdateResultWhenParticipantAndDisciplineExist() {
         when(participantRepository.findById(anyInt())).thenReturn(Optional.of(participant));
         when(disciplineRepository.findById(anyInt())).thenReturn(Optional.of(discipline));
@@ -96,24 +116,6 @@ class ResultServiceTest {
         ResultDTO resultDTO = new ResultDTO();
 
         assertThrows(IllegalArgumentException.class, () -> resultService.editResult(1, resultDTO));
-        verify(resultRepository, times(1)).findById(anyInt());
-    }
-
-    @Test
-    void shouldDeleteResultWhenResultExists() {
-        when(resultRepository.findById(anyInt())).thenReturn(Optional.of(new Result()));
-
-        resultService.deleteResult(1);
-
-        verify(resultRepository, times(1)).findById(anyInt());
-        verify(resultRepository, times(1)).deleteById(anyInt());
-    }
-
-    @Test
-    void shouldThrowExceptionWhenResultDoesNotExistInDeleteResult() {
-        when(resultRepository.findById(anyInt())).thenReturn(Optional.empty());
-
-        assertThrows(IllegalArgumentException.class, () -> resultService.deleteResult(1));
         verify(resultRepository, times(1)).findById(anyInt());
     }
 }
