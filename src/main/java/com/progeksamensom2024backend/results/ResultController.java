@@ -36,7 +36,7 @@ public class ResultController {
        return new ResponseEntity<>(resultService.createResult(result), HttpStatus.CREATED);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ResultDTO> editResult(@PathVariable int id, @RequestBody ResultDTO result) {
         try {
             return ResponseEntity.ok(resultService.editResult(id, result));

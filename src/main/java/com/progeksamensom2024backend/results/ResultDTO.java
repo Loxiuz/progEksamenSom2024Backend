@@ -14,7 +14,7 @@ public class ResultDTO {
     private int id;
     private int participantId;
     private int disciplineId;
-    private LocalDate date;
+    private String date;
     private String value;
 
     public ResultDTO() {

@@ -1,12 +1,8 @@
 package com.progeksamensom2024backend.discipline;
 
-import com.progeksamensom2024backend.participants.Participant;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
