@@ -33,7 +33,7 @@ public class ParticipantService {
         existingParticipant.setFullName(participant.getFullName());
         existingParticipant.setEmail(participant.getEmail());
         existingParticipant.setGender(participant.getGender());
-        existingParticipant.setBirthDate(participant.getBirthDate());
+        existingParticipant.setBirthdate(participant.getBirthdate());
         existingParticipant.setClub(participant.getClub());
         existingParticipant.setDisciplines(participant.getDisciplines());
         return participantRepository.save(existingParticipant);
